@@ -7,9 +7,9 @@
         <input type="text" name="description" required>
         <label for="status"></label>
         <select name="status" id="status">
-            @foreach(config('statuses.project_status') as $status)
-                <option value="{{ $status->getKey() }}">{{ $status }}</option>
-            @endforeach
+{{--            @foreach(config('statuses.project_status') as $status)--}}
+{{--                <option value="{{ $status->getKey() }}">{{ $status }}</option>--}}
+{{--            @endforeach--}}
         </select>
         <input type="submit" value="Mentés">
     </form>

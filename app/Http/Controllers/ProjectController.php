@@ -11,8 +11,27 @@ class ProjectController extends Controller
     {
         $projects = Project::all();
 
-        return view('projects.index', [
-            'projects' => $projects
+        return view('welcome', [
+            'projects' => $projects,
         ]);
+    }
+
+    public function create()
+    {
+        $project = Project::create([
+            'name' => request()->input('name'),
+            'description' => request()->input('description'),
+            'status' => request()->input('status'),
+        ]);
+    }
+
+    public function edit()
+    {
+
+    }
+
+    public function delete()
+    {
+
     }
 }
