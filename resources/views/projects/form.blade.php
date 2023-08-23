@@ -1,16 +1,25 @@
 <div class="container">
-    <form method="post" class="form-control">
+    <form action="{{ $url }}" method="POST" class="form-control">
+        @method($method)
         @csrf
-        <label for="name">Név</label>
-        <input type="text" name="name" required>
-        <label for="description"></label>
-        <input type="text" name="description" required>
-        <label for="status"></label>
-        <select name="status" id="status">
-{{--            @foreach(config('statuses.project_status') as $status)--}}
-{{--                <option value="{{ $status->getKey() }}">{{ $status }}</option>--}}
-{{--            @endforeach--}}
-        </select>
-        <input type="submit" value="Mentés">
+        <div>
+            <label for="name">Név</label>
+            <input type="text" name="name" value="{{ $name ?? '' }}" required>
+        </div>
+        <div>
+            <label for="description"></label>
+            <input type="text" name="description" value="{{ $description ?? '' }}" required>
+        </div>
+        <div>
+            <label for="status"></label>
+            <select name="status" id="status">
+                @foreach(config('statuses.project_status') as $key => $status)
+                    <option value="{{ $key }}">{{ $status }}</option>
+                @endforeach
+            </select>
+        </div>
+        <div>
+            <input type="submit" value="Mentés">
+        </div>
     </form>
 </div>

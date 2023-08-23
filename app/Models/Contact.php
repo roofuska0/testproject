@@ -14,6 +14,6 @@ class Contact extends Model
 
     public function projects(): BelongsToMany
     {
-        $this->belongsToMany(Project::class, 'contact_project');
+        return $this->belongsToMany(Project::class, 'contact_project');
     }
 }
