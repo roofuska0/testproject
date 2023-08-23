@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\UpdateProjectMail;
 use App\Models\Project;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Mail;
 
 class ProjectController extends Controller
 {
@@ -66,6 +69,13 @@ class ProjectController extends Controller
             'description' => $attributes['description'],
             'status' => $attributes['status'],
         ]);
+
+        $changedAttributes = Arr::except($project->getChanges(), [
+            'updated_at',
+        ]);
+
+        Mail::to($project->contacts)
+            ->send(new UpdateProjectMail($changedAttributes));
 
         return redirect()->route('home');
     }
